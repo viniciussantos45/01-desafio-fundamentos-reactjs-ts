@@ -1,0 +1,52 @@
+.container {
+    margin-top: 4rem;
+    width: 60vw;
+}
+
+.groupIndicators {
+    display: flex;
+    justify-content: space-between;
+}
+
+.indicator {
+    font-weight: bold;
+    color: var(--blue-300);
+}
+
+.indicatorQty {
+    color: var(--gray-200);
+    margin-left: 0.7rem;
+    border-radius: 15px;
+    background-color: var(--gray-400);
+    padding: 0.2rem 0.7rem;
+}
+
+.indicator+.indicator .titleIndicator {
+    color: var(--purple-300);
+}
+
+.emptyTodos {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-top: 1.5px solid var(--gray-400);
+    border-radius: 10px;
+    padding: 5rem 0;
+}
+
+.emptyTodos img {
+    margin-bottom: 1rem;
+}
+
+.emptyTodos p {
+    color: var(--gray-300);
+    font-size: 1.2rem;
+    margin-top: 0.25rem;
+    font-weight: bold;
+}
+
+.emptyTodos p+p {
+    font-weight: 400;
+}
