@@ -16,6 +16,8 @@ export function Input({ onSubmit }: InputProps) {
         setNewTodo('');
     }
 
+    // TODO: Add validation to the input
+
     function handleChangeInput(event: React.ChangeEvent<HTMLInputElement>) {
         setNewTodo(event.target.value);
     }

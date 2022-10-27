@@ -50,3 +50,7 @@
 .emptyTodos p+p {
     font-weight: 400;
 }
+
+.listTodos {
+    margin-top: 2rem;
+}
