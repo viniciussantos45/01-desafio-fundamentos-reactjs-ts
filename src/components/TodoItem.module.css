@@ -104,3 +104,16 @@
 .buttonDelete:hover svg {
     color: var(--red-500);
 }
+
+@media (max-width: 768px) {
+    .todoContent span {
+        width: 15px;
+        height: 15px;
+    }
+
+    .todoContent input[type=checkbox]+span svg {
+        margin: 1px;
+        width: 10px;
+        height: 10px;
+    }
+}
