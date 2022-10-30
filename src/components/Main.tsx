@@ -22,10 +22,14 @@ export function Main() {
         setTodos(listTodos);
     }
 
+    function handleDeleteTodo(id: number) {
+        setTodos((current) => current.filter(todo => todo.id !== id));
+    }
+
     return (
         <main className={styles.mainContainer}>
             <Input onSubmit={handleCreateTodo} />
-            <ListTodos todos={todos} onUpdate={handleUpdateTodos} />
+            <ListTodos todos={todos} onUpdate={handleUpdateTodos} onUpdateDeleteds={handleDeleteTodo} />
         </main>
     )
 }

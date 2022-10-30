@@ -4,15 +4,31 @@ import list from '../assets/list.png'
 import styles from './ListTodos.module.css';
 import { useState } from 'react';
 
-export function ListTodos({ todos, onUpdate }: ListTodosProps) {
+export function ListTodos({ todos, onUpdate, onUpdateDeleteds }: ListTodosProps) {
     const [totalCompleted, setTotalCompleted] = useState(0);
 
     function handleCompletedTodo(id: number, isComplete: boolean) {
-        if (isComplete) {
-            setTotalCompleted(totalCompleted + 1);
-        } else {
-            setTotalCompleted(totalCompleted - 1);
-        }
+        const todoList = todos;
+
+        const todoIndex = todoList.findIndex(todo => todo.id === id);
+
+        todoList[todoIndex].completed = isComplete;
+
+        onUpdate(todoList)
+
+        setTotalCompleted(todoList.filter(todo => todo.completed).length);
+    }
+
+    function handleDeleteTodo(id: number) {
+        const todoList = todos;
+
+        const todoIndex = todoList.findIndex(todo => todo.id === id);
+
+        todoList.splice(todoIndex, 1);
+
+        setTotalCompleted(todoList.filter(todo => todo.completed).length);
+
+        onUpdateDeleteds(id)
     }
 
 
@@ -41,7 +57,7 @@ export function ListTodos({ todos, onUpdate }: ListTodosProps) {
                 {todos.length > 0 && (
                     <div className={styles.listTodos}>
                         {todos.map(todo => (
-                            <TodoItem key={todo.id} content={todo} onComplete={handleCompletedTodo} />
+                            <TodoItem key={todo.id} content={todo} onComplete={handleCompletedTodo} onDelete={handleDeleteTodo} />
                         ))}
                     </div>
                 )}

@@ -3,13 +3,15 @@ import styles from './TodoItem.module.css';
 import { Check, Trash } from 'phosphor-react';
 
 
-export function TodoItem({ content, onComplete }: TodoProps) {
-    // TODO: Add the logic to mark a todo as completed
+export function TodoItem({ content, onComplete, onDelete }: TodoProps) {
     // TODO: Add the logic to remove a todo
-    // TODO: Add the logic onChange to the checkbox
 
     function handleMarkCompleted(event: React.ChangeEvent<HTMLInputElement>) {
         onComplete(Number(event.target.name), event.target.checked)
+    }
+
+    function handleDelete(event: React.MouseEvent<HTMLButtonElement>) {
+        onDelete(content.id)
     }
 
     return (
@@ -19,7 +21,7 @@ export function TodoItem({ content, onComplete }: TodoProps) {
                 <span>{<Check size={15} />}</span>
                 <p>{content.title}</p>
             </div>
-            <button className={styles.buttonDelete}>{<Trash size={25} />}</button>
+            <button className={styles.buttonDelete} onClick={handleDelete}>{<Trash size={25} />}</button>
         </div>
     )
 }
