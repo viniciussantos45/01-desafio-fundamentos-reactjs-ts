@@ -53,6 +53,8 @@
 
 .listTodos {
     margin-top: 2rem;
+    height: 450px;
+    overflow-y: scroll;
 }
 
 @media (max-width: 768px) {
