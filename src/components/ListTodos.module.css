@@ -59,4 +59,8 @@
     * {
         font-size: 0.8rem;
     }
+
+    .container {
+        width: 75vw;
+    }
 }

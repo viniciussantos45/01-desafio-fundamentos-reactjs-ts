@@ -35,3 +35,9 @@
 .inputGroup button svg {
     margin-left: 0.2rem;
 }
+
+@media (max-width: 768px) {
+    .inputGroup {
+        width: 75vw;
+    }
+}
