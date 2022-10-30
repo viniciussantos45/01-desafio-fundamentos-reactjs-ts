@@ -112,7 +112,7 @@
     }
 
     .todoContent input[type=checkbox]+span svg {
-        margin: 1px;
+        margin: 1px 0.5px;
         width: 10px;
         height: 10px;
     }
