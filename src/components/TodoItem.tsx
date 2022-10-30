@@ -4,7 +4,6 @@ import { Check, Trash } from 'phosphor-react';
 
 
 export function TodoItem({ content, onComplete, onDelete }: TodoProps) {
-    // TODO: Add the logic to remove a todo
 
     function handleMarkCompleted(event: React.ChangeEvent<HTMLInputElement>) {
         onComplete(Number(event.target.name), event.target.checked)
@@ -17,7 +16,7 @@ export function TodoItem({ content, onComplete, onDelete }: TodoProps) {
     return (
         <div className={styles.todo}>
             <div className={styles.todoContent}>
-                <input type="checkbox" onChange={handleMarkCompleted} name={content.id.toString()} />
+                <input type="checkbox" onChange={handleMarkCompleted} name={content.id.toString()} checked={content.completed} />
                 <span>{<Check size={15} />}</span>
                 <p>{content.title}</p>
             </div>
