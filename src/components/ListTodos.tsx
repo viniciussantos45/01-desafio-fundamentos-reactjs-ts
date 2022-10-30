@@ -2,8 +2,19 @@ import { ListTodosProps } from '../contracts/Todos';
 import { TodoItem } from './TodoItem';
 import list from '../assets/list.png'
 import styles from './ListTodos.module.css';
+import { useState } from 'react';
 
-export function ListTodos({ todos }: ListTodosProps) {
+export function ListTodos({ todos, onUpdate }: ListTodosProps) {
+    const [totalCompleted, setTotalCompleted] = useState(0);
+
+    function handleCompletedTodo(id: number, isComplete: boolean) {
+        if (isComplete) {
+            setTotalCompleted(totalCompleted + 1);
+        } else {
+            setTotalCompleted(totalCompleted - 1);
+        }
+    }
+
 
     return (
         <div className={styles.container}>
@@ -14,7 +25,7 @@ export function ListTodos({ todos }: ListTodosProps) {
                 </div>
                 <div className={styles.indicator}>
                     <span className={styles.titleIndicator}>Concluídas</span>
-                    <span className={styles.indicatorQty}>{todos.filter(todo => todo.completed).length} de {todos.length}</span>
+                    <span className={styles.indicatorQty}>{totalCompleted} de {todos.length}</span>
                 </div>
             </div>
 
@@ -30,7 +41,7 @@ export function ListTodos({ todos }: ListTodosProps) {
                 {todos.length > 0 && (
                     <div className={styles.listTodos}>
                         {todos.map(todo => (
-                            <TodoItem key={todo.id} content={todo} />
+                            <TodoItem key={todo.id} content={todo} onComplete={handleCompletedTodo} />
                         ))}
                     </div>
                 )}

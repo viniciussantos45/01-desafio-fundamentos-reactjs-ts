@@ -18,10 +18,14 @@ export function Main() {
         setTodos([data, ...todos]);
     };
 
+    function handleUpdateTodos(listTodos: Todo[]) {
+        setTodos(listTodos);
+    }
+
     return (
         <main className={styles.mainContainer}>
             <Input onSubmit={handleCreateTodo} />
-            <ListTodos todos={todos} />
+            <ListTodos todos={todos} onUpdate={handleUpdateTodos} />
         </main>
     )
 }

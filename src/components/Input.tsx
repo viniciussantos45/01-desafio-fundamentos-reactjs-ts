@@ -1,5 +1,5 @@
 import { PlusCircle } from 'phosphor-react';
-import { useState } from 'react';
+import { InvalidEvent, useState } from 'react';
 import { Todo } from '../contracts/Todos';
 import styles from './Input.module.css';
 
@@ -16,16 +16,34 @@ export function Input({ onSubmit }: InputProps) {
         setNewTodo('');
     }
 
-    // TODO: Add validation to the input
+    function handleNewTodoInvalid(event: InvalidEvent<HTMLInputElement>) {
+        event.target.setCustomValidity('O comentário não pode ser vazio')
+    }
 
     function handleChangeInput(event: React.ChangeEvent<HTMLInputElement>) {
         setNewTodo(event.target.value);
     }
 
+    const enabledButtonSubmit = newTodo.length === 0
+
     return (
-        <div className={styles.inputGroup}>
-            <input className={styles.inputText} type="text" placeholder='Adicione uma nova tarefa' value={newTodo} onChange={handleChangeInput} />
-            <button className={styles.buttonSubmit} type="submit" onClick={handleSubmit}>Criar {<PlusCircle size={20} />}</button>
-        </div>
+        <form className={styles.inputGroup} onSubmit={handleSubmit}>
+            <input
+                className={styles.inputText}
+                type="text"
+                placeholder='Adicione uma nova tarefa'
+                value={newTodo}
+                onChange={handleChangeInput}
+                onInvalid={handleNewTodoInvalid}
+                required
+            />
+            <button
+                type="submit"
+                className={styles.buttonSubmit}
+                disabled={enabledButtonSubmit}
+            >
+                Criar {<PlusCircle size={20} />}
+            </button>
+        </form>
     )
 }

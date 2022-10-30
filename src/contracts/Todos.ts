@@ -6,8 +6,10 @@ export type Todo = {
 
 export type TodoProps = {
     content: Todo;
+    onComplete: (id: number, isComplete: boolean) => void;
 }
 
 export type ListTodosProps = {
     todos: Todo[];
+    onUpdate: (updatedTodos: Todo[]) => void;
 }
