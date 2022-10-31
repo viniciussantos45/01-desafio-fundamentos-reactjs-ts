@@ -2,10 +2,22 @@ import { ListTodosProps } from '../contracts/Todos';
 import { TodoItem } from './TodoItem';
 import list from '../assets/list.png'
 import styles from './ListTodos.module.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export function ListTodos({ todos, onUpdate, onUpdateDeleteds }: ListTodosProps) {
     const [totalCompleted, setTotalCompleted] = useState(0);
+
+    useEffect(() => {
+        loadStorage();
+    }, [])
+
+    function loadStorage() {
+        const storage = window.localStorage.getItem('todos');
+
+        if (storage) {
+            setTotalCompleted(JSON.parse(storage).filter((todo: any) => todo.completed === true).length);
+        }
+    }
 
     function handleCompletedTodo(id: number, isComplete: boolean) {
         const todoList = todos;
